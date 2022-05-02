@@ -14,3 +14,9 @@ CREATE TABLE assignment_submissions (
   duration INTEGER,
   submission_date DATE
 )
+
+--SELECT students.name as student_name, cohorts.name as cohort_name, cohorts.start_date as cohort_start_date, students.start_date as start_date
+--FROM students 
+--LEFT JOIN cohorts ON cohorts.id = cohort_id
+--WHERE start_date != cohort_start_date
+--ORDER BY cohort_start_date;--
