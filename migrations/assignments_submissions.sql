@@ -13,7 +13,7 @@ CREATE TABLE assignment_submissions (
   student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
   duration INTEGER,
   submission_date DATE
-)
+);
 
 --SELECT students.name as student_name, cohorts.name as cohort_name, cohorts.start_date as cohort_start_date, students.start_date as start_date
 --FROM students 
