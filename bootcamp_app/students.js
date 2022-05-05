@@ -29,13 +29,15 @@ const pool = new Pool({
 
 //this is by writing with JS:
 const cohort = process.argv[2];
-const limit = process.argv[3];
-pool.query(`SELECT students.id id, students.name name, cohorts.name as cohort
-  FROM students
-  JOIN cohorts ON cohorts.id = cohort_id
-  WHERE cohorts.name LIKE '%${cohort}%'
-  LIMIT ${limit || 5};
-  `)
+const limit = process.argv[3] || 5;
+const values = [`%${cohort}%`, limit];
+const queryString = `SELECT students.id id, students.name name, cohorts.name as cohort
+FROM students
+JOIN cohorts ON cohorts.id = cohort_id
+WHERE cohorts.name LIKE $1
+LIMIT $2;
+`
+pool.query(queryString, values)
   .then(res => {
     console.table(res.rows)
     res.rows.forEach(user => {
